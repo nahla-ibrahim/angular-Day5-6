@@ -1,0 +1,10 @@
+.card {
+  height: 550px;
+}
+.product-link:hover {
+  color: #198754;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+  cursor: pointer;
+}

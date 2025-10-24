@@ -1,0 +1,25 @@
+@if(this.product()){
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg p-3">
+        <img [src]="product().images[0]" class="card-img-top" alt="{{product().title}}">
+        <div class="card-body text-center">
+          <h3 class="card-title">{{product().title}}</h3>
+          <p class="card-text mt-3">{{product().description}}</p>
+          <h4 class="text-success mb-3">${{product().price}}</h4>
+
+          <div>
+            <button class="btn btn-outline-success mx-1" (click)="addtocard(products)">Add to Cart</button>
+            <button class="btn btn-outline-danger mx-1" (click)="addtofav(products)">Add to Fav</button>
+          </div>
+
+          <p class="mt-3 text-muted">
+            <strong>Rate:</strong> {{product().rating}} |
+            <strong>Count:</strong> {{product().stock}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>}

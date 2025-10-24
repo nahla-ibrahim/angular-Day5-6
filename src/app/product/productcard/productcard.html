@@ -1,0 +1,24 @@
+<div (mouseenter)="hoveredId = productinput().id" (mouseleave)="hoveredId = null">
+  <div appShadow>
+    <div class="card position-relative overflow-hidden" style="width: 18rem;" (click)="productclicked(productinput())">
+      <img src="{{productinput().images[0]}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <!-- /////////////////////////get product details /////////////////////// -->
+        <h3 class="card-title text-decoration-none text-dark fw-semibold product-link "
+          (click)="getProductDtl(productinput().id)">{{productinput().title}}</h3>
+        <p class="card-text">{{productinput().description | textslice : 40 }}</p>
+      </div>
+      <h5 class="display-7 mb-4">{{productinput().price | currency:'EGP':'symbol' }}</h5>
+      <div class="btncontainer mb-4">
+        <button class="btn btn-outline-success btn-sm mx-1" (click)="addtocard(productinput())">add to cart</button>
+        <button class="btn btn-outline-danger btn-sm mx-1" (click)="addtofav(productinput())">add to fav</button>
+      </div>
+      @if(hoveredId === productinput().id){
+      <div
+        class="absolute position-absolute top-0 start-0 end-0 inset-0 bg-black/60 flex items-center justify-center  p-3 bg-white ">
+        <p>rate:{{productinput().rating}} - stock: {{productinput().stock}} </p>
+      </div>
+      }
+    </div>
+  </div>
+</div>

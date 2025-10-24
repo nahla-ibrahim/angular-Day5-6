@@ -1,0 +1,16 @@
+<div class="container mt-4">
+  <input type="text" class="form-control mb-3" placeholder="Search..." [(ngModel)]="searchTerm" />
+  <div class="container overflow-hidden text-center">
+    <div class="row gy-5 mt-3 ">
+      <div class="row">
+        @for (
+        product of ((products | async)|| [] | search : searchTerm : ['title', 'description']) ;
+        track product.id
+        ) {
+        <app-productcard [productinput]="product" class="col-lg-4 col-md-6 col-12 d-flex justify-content-center mb-4"
+          (onProductClick)=" getProductData($event) ">
+        </app-productcard>
+        }
+      </div>
+    </div>
+  </div>

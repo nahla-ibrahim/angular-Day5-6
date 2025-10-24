@@ -1,0 +1,86 @@
+<form [formGroup]="myform" (ngSubmit)="saveUser()" class="container mt-4">
+  <div class="mb-3">
+    <label for="fname">First Name:</label>
+    <input id="fname" type="text" formControlName="fname" class="form-control" />
+    @if (fname?.touched && fname?.invalid){
+    @if(fname?.errors?.['required']) {
+    <p class="alert alert-danger">fname is required</p>
+    } @if(fname?.errors?.['minlength'] ) {
+    <p class="alert alert-danger">
+      fname should be between {{ fname?.errors?.['minlength']?.requiredLength }} characters
+      and you entered {{ fname?.errors?.['minlength']?.actualLength }} characters.
+    </p>
+    }
+    @if(fname?.errors?.['maxlength'] ) {
+    <p class="alert alert-danger">
+      fname should be between {{ fname?.errors?.['maxlength']?.requiredLength }} characters
+      and you entered {{ fname?.errors?.['maxlength']?.actualLength }} characters.
+    </p>
+    }
+    }
+  </div>
+  <!-- //////////////////lname -->
+
+  <div class="mb-3">
+    <label for="lname">Last Name:</label>
+    <input id="lname" type="text" formControlName="lname" class="form-control" />
+
+    @if(lname?.touched && lname?.invalid) {
+    <p class="alert alert-danger">Last name is required</p>
+    }
+  </div>
+  <!-- /////////////email -->
+  <div class="mb-3">
+    <label for="email">Email:</label>
+    <input id="email" type="email" formControlName="email" class="form-control" />
+
+    @if(email?.touched && email?.invalid) {
+    @if(email?.errors?.['required']) {
+    <p class="alert alert-danger">Email is required</p>
+    }
+    @if(email?.errors?.['email']) {
+    <p class="alert alert-danger">Please enter a valid email address</p>
+    }
+    }
+  </div>
+
+  <!-- /////////////image  -->
+  <div class="mb-3">
+    <label for="imageUrl">Image URL:</label>
+    <input id="imageUrl" type="text" formControlName="imageUrl" class="form-control" />
+
+    @if(imageUrl?.touched && imageUrl?.invalid) {
+    <p class="alert alert-danger">Image URL is required</p>
+    }
+  </div>
+  <!-- ////////////////////// -->
+  <input type="submit" value="add user" [disabled]="myform.invalid" />
+</form>
+
+
+
+<!-- //////////////table -->
+@if (users.length>0 ){
+<div class="container mt-4">
+  <h4>Saved Users</h4>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (user of users; track $index) {
+      <tr>
+        <td><img [src]="user.imageUrl" width="60" height="60" /></td>
+        <td>{{user.fname}}</td>
+        <td>{{user.lname}}</td>
+        <td>{{user.email}}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>}

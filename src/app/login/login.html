@@ -1,0 +1,23 @@
+<form #myform="ngForm" (ngSubmit)="login(myform.value)" class="container-fluid">
+  <div class="form-outline mb-4">
+    <label for="username" class="d-block my-2 ">Username:</label>
+    <input type="text" id="username" name="username" ngModel required #username="ngModel" [(ngModel)]="usedata.username"
+      class=" w-100" />
+
+    <p class="alert alert-danger" [hidden]="username.valid || username.pristine">
+      Username is required
+    </p>
+  </div>
+  <div class="form-outline mb-4">
+    <label for="password" class="d-block my-2 ">Password:</label>
+    <input type="password" id="password" name="password" ngModel required #password="ngModel" class=" w-100" />
+  </div>
+  <p class="alert alert-danger" [hidden]="password.valid || password.pristine">
+    Password is required
+  </p>
+  <input type="submit" value="Login" [disabled]="myform.invalid" class="btn btn-outline-success" />
+  @if(errorMessage){
+  <p class="alert alert-danger mt-3">{{ errorMessage }}</p>
+  }
+
+</form>

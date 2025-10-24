@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/productlist">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            cart
+          </a>
+          <ul class="dropdown-menu">
+            @for (product of products(); track product.id) {
+            <div class="div d-flex justify-content-between align-items-center ">
+              <li><a class="dropdown-item" href="#">{{product?.title}}</a></li>
+              <button class="btn btn-outline-danger m-3 " (click)="deleteProduct(product.id)">
+                delete</button>
+            </div>
+            }
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            fav item
+          </a>
+          <ul class="dropdown-menu">
+            @for (product of favproducts(); track product.id) {
+            <div class="div d-flex justify-content-between align-items-center ">
+              <li><a class="dropdown-item" href="#">{{product?.title}}</a></li>
+              <button class="btn btn-outline-danger m-3 " (click)="deletefavProduct(product.id)">
+                delete</button>
+            </div>
+            }
+          </ul>
+        </li>
+
+      </ul>
+      <form class="d-flex" role="login">
+        <button class="btn btn-outline-danger" (click)="logout()">Logout</button>
+        <button class="btn btn-outline-info" (click)="adduser()">add user</button>
+      </form>
+    </div>
+
+  </div>
+</nav>
